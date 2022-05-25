@@ -2,69 +2,43 @@ import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
-  View,
-  Button,
   SafeAreaView,
-  ScrollView,
-  RefreshControl,
+  FlatList,
+  Button,
+  View,
 } from 'react-native';
 
 interface Data {
   text: string;
-  id: number;
+  created: number;
 }
 
 const App: React.FC = () => {
-  const [list, setList] = useState<Data[]>([]);
-  const [refreshing, setRefreshing] = useState<boolean>(false);
+  const [list, setList] = useState<Data[]>([{text: 'yello', created: 123}]);
 
   const handleAddItem = (listLength: number) => {
-    setList([...list, {text: `Item${listLength + 1}`, id: Date.now()}]);
-  };
-
-  // handler to demo a function being called from a refresh
-  const handleRefreshAdd = () => {
-    handleAddItem(list.length + 100);
+    setList([...list, {text: `Item${listLength + 1}`, created: Date.now()}]);
   };
 
   return (
     <SafeAreaView style={styles.body}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={() => handleRefreshAdd()}
-          />
-        }>
-        <View style={styles.headingContainer}>
-          <Text style={styles.heading}>List</Text>
-          <Button
-            title="Add"
-            color="white"
-            onPress={() => handleAddItem(list?.length ?? 0)}></Button>
-          <Button
-            title="clear"
-            color="red"
-            onPress={() => setList([])}></Button>
-        </View>
-        {list?.length ? (
-          <View>
-            {list?.map((data, index) => {
-              return (
-                <Text
-                  style={[
-                    styles.listItem,
-                    index === 0 ? styles.listItemFirst : {},
-                  ]}>
-                  ID: {data.id}, Content: {data.text}, Index: {index}
-                </Text>
-              );
-            })}
-          </View>
-        ) : (
-          <Text style={styles.warning}>No items...</Text>
+      <View style={styles.headingContainer}>
+        <Text style={styles.heading}>List</Text>
+        <Button
+          title="Add"
+          color="white"
+          onPress={() => handleAddItem(list?.length ?? 0)}></Button>
+        <Button title="clear" color="red" onPress={() => setList([])}></Button>
+      </View>
+      <FlatList
+        keyExtractor={(item, index) => index.toString()}
+        data={list}
+        renderItem={({item}) => (
+          <Text style={styles.listItem}>
+            created: {item.created}, Content: {item.text},
+          </Text>
         )}
-      </ScrollView>
+      />
     </SafeAreaView>
   );
 };
