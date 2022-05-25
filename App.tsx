@@ -8,18 +8,29 @@ import {StyleSheet, Text, View, Button, SafeAreaView} from 'react-native';
 const App: React.FC = () => {
   const [count, setCount] = useState<number>(0);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{height: '100%'}}>
       <View style={styles.body}>
-        <Text style={styles.text}>Count: {count}</Text>
-        <View style={styles.buttonContainer}>
-          <Button
-            title="-"
-            color="white"
-            onPress={() => setCount(count => count - 1)}></Button>
-          <Button
-            title="+"
-            color="white"
-            onPress={() => setCount(count => count + 1)}></Button>
+        <View>
+          <Text style={styles.text}>Count: {count}</Text>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="-"
+              color="white"
+              onPress={() => setCount(count => count - 1)}></Button>
+            <Button
+              title="+"
+              color="white"
+              onPress={() => setCount(count => count + 1)}></Button>
+          </View>
+        </View>
+        <View style={[styles.box, styles.topBox, {flex: 2}]}>
+          <Text style={styles.text}>Yello</Text>
+        </View>
+        <View style={[styles.box, {flex: 1}]}>
+          <Text style={styles.text}>Yello</Text>
+        </View>
+        <View style={[styles.box, {flex: 1}]}>
+          <Text style={styles.text}>Yello</Text>
         </View>
       </View>
     </SafeAreaView>
@@ -31,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0000FF',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100%',
+    flex: 1,
   },
   text: {
     color: '#FFFFFF',
@@ -41,6 +52,20 @@ const styles = StyleSheet.create({
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  box: {
+    width: 100,
+    height: 100,
+    borderColor: '#FFFFFF',
+    borderRadius: 5,
+    borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+  topBox: {
+    marginTop: 0,
   },
 });
 
