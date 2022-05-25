@@ -1,71 +1,88 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, Button, SafeAreaView} from 'react-native';
-// StylesSheet -> allows you to add styles. Styles are added inside objects like you would with React
-// Text -> replaces h1, p, span tags etc
-// View -> replaces div
-// SafeAreaView -> adjusts the view to the users device
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  SafeAreaView,
+  ScrollView,
+} from 'react-native';
+
+interface Data {
+  text: string;
+  id: number;
+}
 
 const App: React.FC = () => {
-  const [count, setCount] = useState<number>(0);
+  const [list, setList] = useState<Data[]>([]);
+
+  const handleAddItem = (listLength: number) => {
+    setList([...list, {text: `Item${listLength + 1}`, id: Date.now()}]);
+  };
+
   return (
-    <SafeAreaView style={{height: '100%'}}>
-      <View style={styles.body}>
-        <View>
-          <Text style={styles.text}>Count: {count}</Text>
-          <View style={styles.buttonContainer}>
-            <Button
-              title="-"
-              color="white"
-              onPress={() => setCount(count => count - 1)}></Button>
-            <Button
-              title="+"
-              color="white"
-              onPress={() => setCount(count => count + 1)}></Button>
+    <SafeAreaView style={styles.body}>
+      <ScrollView>
+        <View style={styles.headingContainer}>
+          <Text style={styles.heading}>List</Text>
+          <Button
+            title="Add"
+            color="white"
+            onPress={() => handleAddItem(list?.length ?? 0)}></Button>
+          <Button
+            title="clear"
+            color="red"
+            onPress={() => setList([])}></Button>
+        </View>
+        {list?.length ? (
+          <View>
+            {list?.map((data, index) => {
+              return (
+                <Text style={styles.listItem}>
+                  ID: {data.id}, Content: {data.text}, Index: {index}
+                </Text>
+              );
+            })}
           </View>
-        </View>
-        <View style={[styles.box, styles.topBox, {flex: 2}]}>
-          <Text style={styles.text}>Yello</Text>
-        </View>
-        <View style={[styles.box, {flex: 1}]}>
-          <Text style={styles.text}>Yello</Text>
-        </View>
-        <View style={[styles.box, {flex: 1}]}>
-          <Text style={styles.text}>Yello</Text>
-        </View>
-      </View>
+        ) : (
+          <Text style={styles.warning}>No items...</Text>
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   body: {
-    backgroundColor: '#0000FF',
+    backgroundColor: 'grey',
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
+    height: '100%',
   },
-  text: {
-    color: '#FFFFFF',
+  heading: {
     fontSize: 30,
     fontWeight: '900',
   },
-  buttonContainer: {
+  headingContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 100,
-    height: 100,
-    borderColor: '#FFFFFF',
-    borderRadius: 5,
-    borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 30,
   },
-  topBox: {
-    marginTop: 0,
+  button: {
+    color: 'white',
+  },
+  warning: {
+    color: 'yellow',
+    textAlign: 'center',
+  },
+  listItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'pink',
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    marginTop: 10,
   },
 });
 
