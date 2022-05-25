@@ -6,6 +6,7 @@ import {
   Button,
   SafeAreaView,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 
 interface Data {
@@ -15,14 +16,26 @@ interface Data {
 
 const App: React.FC = () => {
   const [list, setList] = useState<Data[]>([]);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
 
   const handleAddItem = (listLength: number) => {
     setList([...list, {text: `Item${listLength + 1}`, id: Date.now()}]);
   };
 
+  // handler to demo a function being called from a refresh
+  const handleRefreshAdd = () => {
+    handleAddItem(list.length + 100);
+  };
+
   return (
     <SafeAreaView style={styles.body}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => handleRefreshAdd()}
+          />
+        }>
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>List</Text>
           <Button
@@ -38,7 +51,11 @@ const App: React.FC = () => {
           <View>
             {list?.map((data, index) => {
               return (
-                <Text style={styles.listItem}>
+                <Text
+                  style={[
+                    styles.listItem,
+                    index === 0 ? styles.listItemFirst : {},
+                  ]}>
                   ID: {data.id}, Content: {data.text}, Index: {index}
                 </Text>
               );
@@ -83,6 +100,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 5,
     marginTop: 10,
+  },
+  listItemFirst: {
+    marginTop: 0,
   },
 });
 
