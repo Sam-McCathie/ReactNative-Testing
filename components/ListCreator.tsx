@@ -30,44 +30,39 @@ const ListCreator: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.body}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={() => handleRefreshAdd()}
-          />
-        }>
-        <View style={styles.headingContainer}>
-          <Text style={styles.heading}>List</Text>
-          <Button
-            title="Add"
-            color="white"
-            onPress={() => handleAddItem(list?.length ?? 0)}></Button>
-          <Button
-            title="clear"
-            color="red"
-            onPress={() => setList([])}></Button>
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={() => handleRefreshAdd()}
+        />
+      }>
+      <View style={styles.headingContainer}>
+        <Text style={styles.heading}>List</Text>
+        <Button
+          title="Add"
+          color="white"
+          onPress={() => handleAddItem(list?.length ?? 0)}></Button>
+        <Button title="clear" color="red" onPress={() => setList([])}></Button>
+      </View>
+      {list?.length ? (
+        <View>
+          {list?.map((data, index) => {
+            return (
+              <Text
+                style={[
+                  styles.listItem,
+                  index === 0 ? styles.listItemFirst : {},
+                ]}>
+                ID: {data.id}, Content: {data.text}, Index: {index}
+              </Text>
+            );
+          })}
         </View>
-        {list?.length ? (
-          <View>
-            {list?.map((data, index) => {
-              return (
-                <Text
-                  style={[
-                    styles.listItem,
-                    index === 0 ? styles.listItemFirst : {},
-                  ]}>
-                  ID: {data.id}, Content: {data.text}, Index: {index}
-                </Text>
-              );
-            })}
-          </View>
-        ) : (
-          <Text style={styles.warning}>No items...</Text>
-        )}
-      </ScrollView>
-    </SafeAreaView>
+      ) : (
+        <Text style={styles.warning}>No items...</Text>
+      )}
+    </ScrollView>
   );
 };
 
