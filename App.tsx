@@ -1,16 +1,17 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
+// SafeAreaView -> adjusts the view to the users device
+
 // Interchange components
 import FlatListTest from './components/FlatListTest';
 import ListCreator from './components/ListCreator';
 import CounterTesting from './components/CounterTesting';
-
-// SafeAreaView -> adjusts the view to the users device
+import SectionListExample from './components/SectionList';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView style={styles.body}>
-      <FlatListTest />
+      <SectionListExample />
     </SafeAreaView>
   );
 };
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: 'grey',
     alignItems: 'center',
-    justifyContent: 'center',
     height: '100%',
   },
 });
