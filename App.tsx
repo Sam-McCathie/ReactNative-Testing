@@ -9,11 +9,12 @@ import CounterTesting from './components/CounterTesting';
 import SectionListExample from './components/SectionList';
 import UserInputs from './components/UserInputs';
 import CustomButtons from './components/CustomButtons';
+import AlertToast from './components/Alert';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView style={styles.body}>
-      <CustomButtons />
+      <AlertToast />
     </SafeAreaView>
   );
 };
