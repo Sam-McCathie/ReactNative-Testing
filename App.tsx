@@ -8,11 +8,12 @@ import ListCreator from './components/ListCreator';
 import CounterTesting from './components/CounterTesting';
 import SectionListExample from './components/SectionList';
 import UserInputs from './components/UserInputs';
+import CustomButtons from './components/CustomButtons';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView style={styles.body}>
-      <UserInputs />
+      <CustomButtons />
     </SafeAreaView>
   );
 };
