@@ -7,11 +7,12 @@ import FlatListTest from './components/FlatListTest';
 import ListCreator from './components/ListCreator';
 import CounterTesting from './components/CounterTesting';
 import SectionListExample from './components/SectionList';
+import UserInputs from './components/UserInputs';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView style={styles.body}>
-      <SectionListExample />
+      <UserInputs />
     </SafeAreaView>
   );
 };

@@ -14,7 +14,7 @@ type Data = {
 };
 
 // Good for displaying nested arrays
-function SectionListExample() {
+const SectionListExample: React.FC = () => {
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [DATA, setDATA] = useState<Data[]>([
     {
@@ -68,7 +68,7 @@ function SectionListExample() {
       </View>
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   heading: {
