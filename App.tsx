@@ -10,11 +10,12 @@ import SectionListExample from './components/SectionList';
 import UserInputs from './components/UserInputs';
 import CustomButtons from './components/CustomButtons';
 import AlertToast from './components/Alert';
+import ModalTesting from './components/ModalTesting';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView style={styles.body}>
-      <AlertToast />
+      <ModalTesting />
     </SafeAreaView>
   );
 };
