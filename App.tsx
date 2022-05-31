@@ -12,11 +12,12 @@ import CustomButtons from './components/CustomButtons';
 import AlertToast from './components/Alert';
 import ModalTesting from './components/ModalTesting';
 import ImageTesting from './components/ImageTesting';
+import CustomComponentsAndProps from './components/CustomComponentsAndProps';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView style={styles.body}>
-      <ImageTesting />
+      <CustomComponentsAndProps />
     </SafeAreaView>
   );
 };
