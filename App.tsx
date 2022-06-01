@@ -1,5 +1,7 @@
+import 'react-native-gesture-handler';
+
 import React from 'react';
-import {StyleSheet, SafeAreaView} from 'react-native';
+import {StyleSheet, SafeAreaView, Text} from 'react-native';
 // SafeAreaView -> adjusts the view to the users device
 
 // Interchange components
@@ -13,12 +15,13 @@ import AlertToast from './components/Alert';
 import ModalTesting from './components/ModalTesting';
 import ImageTesting from './components/ImageTesting';
 import CustomComponentsAndProps from './components/CustomComponentsAndProps';
+import Navigation from './components/Navigation';
 
 const App: React.FC = () => {
   return (
-    <SafeAreaView style={styles.body}>
-      <CustomComponentsAndProps />
-    </SafeAreaView>
+    // <SafeAreaView style={styles.body}>
+    <Navigation />
+    // </SafeAreaView>
   );
 };
 
