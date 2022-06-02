@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {StyleSheet, SafeAreaView, Text, View, Pressable} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Home from './components/Home';
 import ScreenA from './components/ScreenA';
@@ -20,17 +20,44 @@ import ScreenA from './components/ScreenA';
 // import ImageTesting from './components/ImageTesting';
 // import CustomComponentsAndProps from './components/CustomComponentsAndProps';
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{header: () => null}}>
-        <Stack.Screen name="A" component={ScreenA} />
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
+      <Tab.Navigator
+        screenOptions={({route}) => ({
+          // options fall inside this object
+          tabBarIcon: ({focused}) => {
+            return (
+              <Text style={focused ? styles.focused : styles.notFocused}>
+                {route.name === 'A' ? 'Screen A' : 'Home'}
+              </Text>
+            );
+          },
+          tabBarActiveTintColor: 'white',
+          tabBarActiveBackgroundColor: 'grey',
+          // there are also props for inactive
+          tabBarShowLabel: false,
+        })}
+
+        // tabBarOptions={{activeTintColor: 'red'}}
+      >
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="A" component={ScreenA} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
+const styles = StyleSheet.create({
+  focused: {
+    color: 'white',
+    fontSize: 15,
+  },
+  notFocused: {
+    color: 'grey',
+    fontSize: 10,
+  },
+});
 
 export default App;
