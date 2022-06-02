@@ -33,13 +33,4 @@ const App: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  screenAButton: {
-    backgroundColor: 'pink',
-    maxWidth: 100,
-    padding: 10,
-    borderRadius: 5,
-  },
-});
-
 export default App;
