@@ -7,12 +7,18 @@ const Home: React.FC<any> = ({navigation}) => {
     navigation.navigate('A');
   };
 
+  const toggleDrawer = () => {
+    navigation.toggleDrawer();
+  };
   return (
     <SafeAreaView>
       <View>
         <Text>Home</Text>
         <Pressable style={styles.screenAButton} onPress={onPressHandler}>
           <Text>Got to screen A</Text>
+        </Pressable>
+        <Pressable style={styles.screenAButton} onPress={toggleDrawer}>
+          <Text>Toggle Drawer</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -25,6 +31,7 @@ const styles = StyleSheet.create({
     maxWidth: 100,
     padding: 10,
     borderRadius: 5,
+    marginBottom: 10,
   },
 });
 
