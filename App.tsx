@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Home from './components/Home';
-import ScreenA from './components/ScreenA';
+import Login from './components/Login';
 
 const Drawer = createDrawerNavigator();
 
@@ -13,13 +13,7 @@ const App: React.FC = () => {
     <NavigationContainer>
       <Drawer.Navigator>
         <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen
-          name="A"
-          component={ScreenA}
-          options={{
-            title: 'Screen A', // update title of screen
-          }}
-        />
+        <Drawer.Screen name="Login" component={Login} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

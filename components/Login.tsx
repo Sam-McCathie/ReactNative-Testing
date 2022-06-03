@@ -2,17 +2,21 @@ import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 
-const ScreenA: React.FC<any> = ({navigation}) => {
+const Login: React.FC<any> = ({navigation, route}) => {
+  const {user} = route.params;
+
+  console.log(user);
+
   const onPressHandler = () => {
-    navigation.navigate('Home');
+    navigation.goBack();
   };
 
   return (
     <SafeAreaView>
       <View>
-        <Text>Hello from screen A</Text>
+        <Text>Welcome, {user}</Text>
         <Pressable style={styles.screenAButton} onPress={onPressHandler}>
-          <Text>Go Home</Text>
+          <Text>Logout</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -24,7 +28,8 @@ const styles = StyleSheet.create({
     maxWidth: 100,
     padding: 10,
     borderRadius: 5,
+    alignItems: 'center',
   },
 });
 
-export default ScreenA;
+export default Login;
