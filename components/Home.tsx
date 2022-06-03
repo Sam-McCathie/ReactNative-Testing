@@ -21,7 +21,7 @@ const Home: React.FC<any> = ({navigation}) => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Home</Text>
+        <Text style={styles.heading}>Home</Text>
         <TextInput
           style={styles.userInput}
           value={user}
@@ -39,6 +39,9 @@ const Home: React.FC<any> = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  heading: {
+    fontFamily: 'KdamThmorPro-Regular', // use full name of font file that has been uploaded
+  },
   button: {
     backgroundColor: 'pink',
     maxWidth: 100,
