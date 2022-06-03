@@ -7,9 +7,10 @@ const Home: React.FC<any> = ({navigation}) => {
   const [user, setUser] = useState<string>('');
   const onPressHandler = () => {
     // pass data between screens
-    navigation.navigate('Login', {
-      user: user,
-    });
+    if (user.length > 0)
+      navigation.navigate('Login', {
+        user: user,
+      });
   };
 
   const toggleDrawer = () => {
